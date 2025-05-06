@@ -1,0 +1,41 @@
+<section class="tag">
+    <div class="container medium">
+        <h1 class="tag-name" style="text-align: left;margin-bottom:25px;">{{name}}</h1>
+        {{#if description}}
+            <div class="tag-description">{{description}}</div>
+        {{/if}}
+        
+        {{#get "posts" include="tags" filter="tag:{{slug}}"}}
+			<div style="display:flex; flex-direction: column; text-align: left;">
+				{{#foreach posts}}
+					{{> loop }}
+				{{/foreach}}
+			</div>	
+			
+		{{/get}}
+        
+        
+        {{#get "tags" limit="all" filter="id:-{{id}}+visibility:public" as |tags|}}
+            {{#if tags}}
+                <div class="tag-list" style="padding:25px 0px; border-top:dotted black 1px;">
+                    <span class="tag-list-label">More:</span>
+                    {{#foreach tags}}
+                        <a class="tag-list-item" href="{{url}}">{{name}}</a>
+                    {{/foreach}}
+                </div>
+            {{/if}}
+        {{/get}}
+    </div>
+    {{#if feature_image}}
+        <div class="container">
+            <div class="tag-media u-placeholder horizontal">
+                <img class="u-object-fit" srcset="{{> srcset}}" src="{{img_url feature_image size="l"}}" alt="{{name}}">
+            </div>
+        </div>
+    {{/if}}
+</section>
+<div class="post-feed container medium">
+    {{#foreach posts}}
+        {{> "loop"}}
+    {{/foreach}}
+</div>

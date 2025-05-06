@@ -1,0 +1,15 @@
+    {{#get 'tags' limit='all' include='count.posts'}}
+			{{#foreach tags}}
+				<h2>{{name}} ({{ count.posts }})</h2>
+				{{#get "posts" include="tags" filter="tag:{{slug}}"}}
+					<div>
+						<ul>
+						{{#foreach posts}}
+                            {{> loop}}
+						{{/foreach}}
+						</ul>
+					</div>	
+					
+				{{/get}}
+			{{/foreach}}		
+		{{/get}}

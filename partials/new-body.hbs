@@ -1,0 +1,47 @@
+<div class="new-body">
+    <div class="flex-element new-nav">
+        <!-- <button class="new-message-button">New Message</button> -->
+        {{navigation}}
+    </div>
+    
+    {{#is "home"}}
+        <div class="flex-element new-list">
+            <div class="new-cover">
+                 {{#get "pages" limit="2" filter="tag:[hash-cover]" include="content"}}
+                    {{#foreach pages}}
+                            {{content}}
+                    {{/foreach}}
+                {{/get}}
+            </div>
+            
+            
+            {{#foreach posts}}
+                {{> "loop"}}
+            {{/foreach}}
+        </div>
+    {{/is}}
+    
+    {{#is "post"}}
+        <div class="flex-element new-list">
+            {{#post}}
+                {{> content}}
+            {{/post}}            
+        </div>
+    {{/is}}
+    {{#is "tag"}}
+        <div class="flex-element new-list">
+            {{#tag}}
+                {{> content-tag}}
+            {{/tag}}            
+        </div>
+    {{/is}}
+
+    {{#is "page"}}
+        <div class="flex-element new-list">
+            {{#page}}
+                {{> content-page}}
+            {{/page}}            
+        </div>
+    {{/is}}
+    
+</div>
