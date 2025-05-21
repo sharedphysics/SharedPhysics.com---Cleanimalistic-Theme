@@ -2,15 +2,15 @@
 </style>
 
 <div class="new-hero">
-    <div class="flex-element" style="flex-direction:column; column-gap:0px; line-height:0.7em;">
-        <a href="{{@site.url}}"><strong style="font-size:1.3em;">{{@site.title}}</strong></a>
-        <br><span style="color:grey;font-size:0.8em;">{{@site.description}}</span>
-    </div>
-    <div class="flex-element">
+        <div class="flex-element">
          {{#if @site.icon}}
             <div class="cover-icon">
                 <a href="/about-index/"><img class="cover-icon-image" src="{{@site.icon}}" alt="{{@site.title}}"></a>
             </div>
         {{/if}}
+    </div>
+    <div class="flex-element" style="flex-direction:column; column-gap:0px; line-height:0.7em;">
+        <a href="{{@site.url}}"><strong style="font-size:1.3em;">{{@site.title}}</strong></a>
+        <br><span style="color:grey;font-size:0.8em;">{{@site.description}}</span>
     </div>
 </div>

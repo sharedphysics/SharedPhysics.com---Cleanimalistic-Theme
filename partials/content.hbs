@@ -1,5 +1,5 @@
 {{#is "post"}}
-<div class="new-list">
+<div class="new-list" style="max-width:600px;">
     {{#if feature_image}}
             {{#unless no_image}}
                 <figure class="single-media kg-width-{{width}}">
@@ -20,9 +20,9 @@
         <h1>{{title}}</h1>
     </a>
     <div>
-        <p style="font-size:0.8em; color:grey; font-family:'consolas', monospace;">
-            Published on <time datetime="{{date format="YYYY-MM-DD"}}">{{date published_at}}</time> • 
-            <span class="single-meta-item single-meta-length">{{reading_time}}</span> • 
+        <p style="border-top:1px dotted black; padding-top:10px; font-size:0.8em; color:grey; font-family:'consolas', monospace;">
+            Published on <time datetime="{{date format="YYYY-MM-DD"}}">{{date published_at}}</time> | 
+            <span class="single-meta-item single-meta-length">{{reading_time}} | <span class="word-count"></span></span> | 
             {{#primary_tag}}
                 <a class="post-tag post-tag-{{slug}}" href="{{url}}">
                     {{name}}
@@ -31,7 +31,7 @@
         </p>
     </div>
     {{#if custom_excerpt}}
-        <div style="border-top:1px dotted black; padding-bottom:10px; border-bottom:1px dotted black; padding:10px 0px; margin: 10px 0px;">
+        <div style="border-bottom:1px dotted black; padding:10px 0px; margin: 10px 0px; max-width:600px;">
             <p style="font-size:0.8em; color:grey; font-family:'consolas', monospace;"><strong>TLDR:</strong> {{custom_excerpt}}</p>
         </div>
     {{/if}}
@@ -53,3 +53,11 @@
 
     {{/is}}
 </article>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const content = document.querySelector(".single-content"); // or whatever your main content class is
+    const text = content?.textContent || '';
+    const wordCount = text.trim().split(/\s+/).length;
+    document.querySelector(".word-count").textContent = `${wordCount.toLocaleString()} words`;
+  });
+</script>

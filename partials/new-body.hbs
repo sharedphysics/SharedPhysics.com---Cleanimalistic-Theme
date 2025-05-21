@@ -1,38 +1,60 @@
-<div class="new-body">
-    <div class="flex-element new-nav">
-        <!-- <button class="new-message-button">New Message</button> -->
-        {{navigation}}
-    </div>
-    
+<div class="new-body2">
     {{#is "home"}}
         <div class="flex-element new-list">
             <div class="new-cover">
-                 {{#get "pages" limit="2" filter="tag:[hash-cover]" include="content"}}
+                {{#get "pages" limit="1" filter="tag:[hash-cover]" include="content"}}
                     {{#foreach pages}}
-                            {{content}}
+                        {{content}}
                     {{/foreach}}
                 {{/get}}
+                <form class="signup-form" data-members-form="subscribe">
+                    <input class="signup-email" type="email" name="email" placeholder="Your email address" required />
+                    <button class="signup-button" type="submit">
+                        <span>Get Updates</span> &#8594;
+                    </button>
+                </form>
+                <div data-members-success class="signup-success-message">
+                    Thanks, check your inbox!
+                </div>
+                <div data-members-error class="signup-error-message">
+                    Something went wrong. Please try again.
+                </div>
             </div>
-            
-            
-            {{#foreach posts}}
-                {{> "loop"}}
-            {{/foreach}}
+            <div class="posts-loop-div">
+                <strong>⭑ Popular</strong><br>
+                {{#get "posts" limit="all" filter="featured:true"}}
+                    <ul class="post-loop-ul">
+                        {{#foreach posts}}
+                            {{> "loop2"}}
+                        {{/foreach}}
+                    </ul>
+                {{/get}}
+            </div>
+
+            <div class="posts-loop-div">
+                <strong>All</strong><br>
+                 <ul class="post-loop-ul">
+                {{#foreach posts}}
+                    {{> "loop2"}}
+                {{/foreach}}
+                 </ul>
+            </div>
+
         </div>
     {{/is}}
-    
+
     {{#is "post"}}
         <div class="flex-element new-list">
             {{#post}}
                 {{> content}}
-            {{/post}}            
+            {{/post}}
         </div>
     {{/is}}
     {{#is "tag"}}
         <div class="flex-element new-list">
             {{#tag}}
                 {{> content-tag}}
-            {{/tag}}            
+            {{/tag}}
         </div>
     {{/is}}
 
@@ -40,8 +62,7 @@
         <div class="flex-element new-list">
             {{#page}}
                 {{> content-page}}
-            {{/page}}            
+            {{/page}}
         </div>
     {{/is}}
-    
 </div>
